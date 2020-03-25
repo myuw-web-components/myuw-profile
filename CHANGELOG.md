@@ -1,5 +1,12 @@
 # myuw-profile versions
 
+## 1.6.0
+
+### Fixed
+
+* Ensure focus state is visible
+* Improve navigating through profile menu items
+
 ## 1.5.0
 
 ### Fixed

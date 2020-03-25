@@ -22,7 +22,6 @@
     align-items: center;
     align-content: center;
     align-self: center;
-    outline: none;
     border-radius: 50%;
     height: 42px;
     width: 42px;
@@ -37,7 +36,13 @@
   #myuw-profile-circle:hover,
   #myuw-profile-login:hover {
     cursor: pointer;
-    background: rgba(0,0,0,0.12);
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  #myuw-profile-circle:focus,
+  #myuw-profile-nav a:focus,
+  #myuw-profile-nav p:focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
 
   #myuw-profile-circle-initial {
@@ -116,7 +121,6 @@
     background-color: #f5f5f5;
     border-bottom: 1px solid #e5e5e5;
     user-select: none;
-    outline: none;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -149,7 +153,6 @@
     background-color: #f5f5f5;
     border-bottom: 1px solid #e5e5e5;
     user-select: none;
-    outline: none;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -184,6 +187,12 @@
     background-color: #ececec;
   }
 
+  ::slotted(a:focus),
+  ::slotted(p:focus) {
+    outline: -webkit-focus-ring-color auto 5px;
+    z-index: 1;
+  }
+
   #myuw-profile-nav a:hover,
   #myuw-profile-nav a:focus,
   #myuw-profile-nav p:hover,
@@ -202,23 +211,12 @@
 
 <div id="myuw-profile-wrapper" hidden>
 
-  <button
-    id="myuw-profile-circle"
-    aria-label="profile menu"
-    aria-haspopup="true"
-    aria-controls="myuw-profile-nav"
-    aria-expanded="false"
-  >
+  <button id="myuw-profile-circle" aria-label="Profile menu" aria-haspopup="true" aria-controls="myuw-profile-nav"
+    aria-expanded="false">
     <p id="myuw-profile-circle-initial"><i class="material-icons">person</i></p>
   </button>
 
-  <ul
-    id="myuw-profile-nav"
-    role="menu"
-    tabindex="-1"
-    aria-labelledby="myuw-profile-circle"
-    hidden
-  >
+  <ul id="myuw-profile-nav" role="menu" tabindex="-1" aria-labelledby="myuw-profile-circle" hidden>
     <p id="myuw-profile-nav-user"></p>
     <li role="menuitem">
       <slot name="nav-item"></slot>
