@@ -40,19 +40,21 @@ class MyUWProfile extends HTMLElement {
       { target: this.$nav, type: 'click', handler: event => this.handleNavClick(event) },
       { target: this, type: 'keydown', handler: event => this.handleKeydown(event) },
       { target: window, type: 'click', handler: event => this.handleWindowClick(event) }
-    ]
+    ];
+    this.getFocusableElements();
   }
 
   /**
-   * Array of the focusable elements within the profile menu, with the Logout link last.
+   * Build an array of the focusable elements within the profile menu, with the Logout link and profile button.
    *
    * @returns {Array<Element>}
    */
-    get focusableElements() {
+    getFocusableElements() {
     const selector="a[href]";
     const focusableElements=this.contentSlotElement.assignedElements({ flatten: true })
       .reduce(
         (agg, node) => {
+          node.setAttribute("role", "menuitem");
           if (node.matches(selector)) {
             agg.push(node);
           }
@@ -63,7 +65,7 @@ class MyUWProfile extends HTMLElement {
         },
         []
       );
-      focusableElements.push(this.$logout);
+      focusableElements.push.apply(focusableElements, [this.$logout, this.$button]);
     return focusableElements;
   }
 
@@ -114,6 +116,7 @@ class MyUWProfile extends HTMLElement {
         this.focusNext();
         break;
       case 'ArrowUp':
+
         this.focusPrevious();
         break;
     }
@@ -123,8 +126,8 @@ class MyUWProfile extends HTMLElement {
   /**
    * Focus the next item in menu, cycling around to the first
    */
-  focusNext(currentItem) {
-    const focusableElements=this.focusableElements;
+  focusNext() {
+    const focusableElements=this.getFocusableElements();
     const focusedElement=this.isSameNode(document.activeElement)? this.shadowRoot.activeElement:document.activeElement;
     const focusedIndex=focusableElements.indexOf(focusedElement);
     if (focusedIndex===focusableElements.length-1||focusedIndex===-1) {
@@ -139,7 +142,7 @@ class MyUWProfile extends HTMLElement {
    * Focus the previous item in menu, cycling around to the last
    */
   focusPrevious() {
-    const focusableElements=this.focusableElements;
+    const focusableElements=this.getFocusableElements();
     const focusedElement=this.isSameNode(document.activeElement)? this.shadowRoot.activeElement:document.activeElement;
     const focusedIndex=focusableElements.indexOf(focusedElement);
     if (focusedIndex===0||focusedIndex===-1) {
