@@ -33,6 +33,7 @@ class MyUWProfile extends HTMLElement {
     this.$nav         = this.shadowRoot.getElementById('myuw-profile-nav');
     this.$displayName = this.shadowRoot.getElementById('myuw-profile-nav-user');
     this.$wrapper     = this.shadowRoot.getElementById('myuw-profile-wrapper');
+    this.contentSlotElement=this.shadowRoot.querySelector('slot[name=nav-item]');
     this.eventListeners = [
       { target: document, type: 'myuw-login', handler: event => this.handleLogin(event) },
       { target: this.$button, type: 'click', handler: event => this.handleButtonClick(event) },
@@ -40,6 +41,30 @@ class MyUWProfile extends HTMLElement {
       { target: this, type: 'keydown', handler: event => this.handleKeydown(event) },
       { target: window, type: 'click', handler: event => this.handleWindowClick(event) }
     ]
+  }
+
+  /**
+   * Array of the focusable elements within the profile menu, with the Logout link last.
+   *
+   * @returns {Array<Element>}
+   */
+    get focusableElements() {
+    const selector="a[href]";
+    const focusableElements=this.contentSlotElement.assignedElements({ flatten: true })
+      .reduce(
+        (agg, node) => {
+          if (node.matches(selector)) {
+            agg.push(node);
+          }
+          else {
+            node.querySelectorAll(selector).forEach(each => agg.push(each));
+          }
+          return agg;
+        },
+        []
+      );
+      focusableElements.push(this.$logout);
+    return focusableElements;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -82,10 +107,49 @@ class MyUWProfile extends HTMLElement {
       case 'Escape':
         this.closeMenu();
         break;
+      case 'Tab':
+        this.closeMenu();
+        break;
+      case 'ArrowDown':
+        this.focusNext();
+        break;
+      case 'ArrowUp':
+        this.focusPrevious();
+        break;
     }
     event.stopPropagation();
   }
 
+  /**
+   * Focus the next item in menu, cycling around to the first
+   */
+  focusNext(currentItem) {
+    const focusableElements=this.focusableElements;
+    const focusedElement=this.isSameNode(document.activeElement)? this.shadowRoot.activeElement:document.activeElement;
+    const focusedIndex=focusableElements.indexOf(focusedElement);
+    if (focusedIndex===focusableElements.length-1||focusedIndex===-1) {
+      focusableElements[0].focus();
+    }
+    else {
+      focusableElements[focusedIndex+1].focus();
+    }
+  }
+
+  /**
+   * Focus the previous item in menu, cycling around to the last
+   */
+  focusPrevious() {
+    const focusableElements=this.focusableElements;
+    const focusedElement=this.isSameNode(document.activeElement)? this.shadowRoot.activeElement:document.activeElement;
+    const focusedIndex=focusableElements.indexOf(focusedElement);
+    if (focusedIndex===0||focusedIndex===-1) {
+      focusableElements[focusableElements.length-1].focus();
+    }
+    else {
+      focusableElements[focusedIndex-1].focus();
+    }
+  }
+  
   handleLogin(event) {
     if (!event || !event.detail || !event.detail.person) {
       this.showLoginButton();
