@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.6.1
+
+### Added
+
+* Add invisible backdrop behind active profile menu
+
 ## 1.6.0
 
 ### Fixed

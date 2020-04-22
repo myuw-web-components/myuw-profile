@@ -28,6 +28,7 @@ class MyUWProfile extends HTMLElement {
     this.shadowRoot.appendChild(this.constructor.template.content.cloneNode(true));
     this.$login       = this.shadowRoot.getElementById('myuw-profile-login');
     this.$logout      = this.shadowRoot.getElementById('myuw-profile-logout');
+    this.$backdrop    = this.shadowRoot.getElementById('myuw-profile-backdrop');
     this.$button      = this.shadowRoot.getElementById('myuw-profile-circle');
     this.$circle      = this.shadowRoot.getElementById('myuw-profile-circle-initial');
     this.$nav         = this.shadowRoot.getElementById('myuw-profile-nav');
@@ -192,12 +193,14 @@ class MyUWProfile extends HTMLElement {
 
   openMenu() {
     this.$nav.hidden = false;
+    this.$backdrop.hidden=false;
     this.$nav.focus();
     this.$button.setAttribute('aria-expanded', 'true');
   }
 
   closeMenu() {
     this.$nav.hidden = true;
+    this.$backdrop.hidden=true;
     this.$nav.blur();
     this.$button.setAttribute('aria-expanded', 'false');
   }
