@@ -200,17 +200,26 @@
     background-color: #ececec;
   }
 
+  #myuw-profile-backdrop {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
   /* Don't let `display` styles override hidden attribute */
   [hidden] {
     display: none !important;
   }
-
 </style>
 
 <a href="#" id="myuw-profile-login" hidden>Login</a>
-
+<div id="myuw-profile-backdrop" hidden></div>
 <div id="myuw-profile-wrapper" hidden>
-
   <button id="myuw-profile-circle" aria-label="Profile menu" aria-haspopup="true" aria-controls="myuw-profile-nav"
     aria-expanded="false">
     <p id="myuw-profile-circle-initial"><i class="material-icons">person</i></p>
