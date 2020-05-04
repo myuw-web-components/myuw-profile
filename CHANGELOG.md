@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.6.2
+
+### Fixed
+
+* Decrease the width of profile menu on smaller screens
+
 ## 1.6.1
 
 ### Added
