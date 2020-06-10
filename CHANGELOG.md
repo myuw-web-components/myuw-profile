@@ -1,5 +1,16 @@
 # myuw-profile versions
 
+## 1.6.3
+
+### Changed
+
+* Remove the media query style rule
+* Change the width of #myuw-profile-nav from 320px to 230px
+
+### Fixed
+
+* Prevent body from scrolling when the menu modal is open
+
 ## 1.6.2
 
 ### Fixed
