@@ -196,6 +196,7 @@ class MyUWProfile extends HTMLElement {
     this.$backdrop.hidden=false;
     this.$nav.focus();
     this.$button.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('modal-open');
   }
 
   closeMenu() {
@@ -203,6 +204,7 @@ class MyUWProfile extends HTMLElement {
     this.$backdrop.hidden=true;
     this.$nav.blur();
     this.$button.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('modal-open');
   }
 
   toggleMenu() {
