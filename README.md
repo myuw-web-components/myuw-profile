@@ -86,6 +86,11 @@ document.addEventListener('WebComponentsReady', function() {
 
 For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
 
-
 Cross-browser testing provided by:<br/>
 <a href="https://www.browserstack.com/"><img width="160" src="https://myuw-web-components.github.io/img/Browserstack-logo.svg" alt="BrowserStack"/></a>
+
+### Releasing
+
+Update version using [npm version](https://docs.npmjs.com/cli/version) with appropriate selection: `patch, minor, or major`.
+Deploy npm package to the world using `npm publish` (if you don't have publish rights contact authors).
+Push git changes to the github via `git push origin master`.
