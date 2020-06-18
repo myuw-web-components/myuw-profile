@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.6.4
+
+### Updated
+
+* Update README with releasing information and import path usage recommendation
+
 ## 1.6.3
 
 ### Changed
