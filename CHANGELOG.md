@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.6.5
+
+### Updated
+
+* Update profile button to strengthen the contrast between the background and foreground on hover effect
+
 ## 1.6.4
 
 ### Updated
