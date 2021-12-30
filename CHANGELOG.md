@@ -1,5 +1,12 @@
 # myuw-profile versions
 
+## 1.6.6
+
+### Updated
+
+* Update displayName variable to contain user's last name in addition to user's first name
+* Update import url of myuw-app-styles
+
 ## 1.6.5
 
 ### Updated
