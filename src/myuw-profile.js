@@ -160,13 +160,13 @@ class MyUWProfile extends HTMLElement {
       return;
     }
     const person = event.detail.person;
-    if (!person.firstName) {
+    if (!person.firstName || !person.lastName) {
       this.$displayName.hidden = true;
       this.$circle.innerHTML = '<i class="material-icons">person</i>';
       this.showProfileBubble();
       return;
     }
-    this.$displayName.textContent = person.firstName;
+    this.$displayName.textContent = person.firstName + ' ' + person.lastName;
     this.$displayName.hidden = false;
     this.$circle.textContent = person.firstName.substring(0,1);
     this.showProfileBubble();
