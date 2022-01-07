@@ -1,5 +1,11 @@
 # myuw-profile versions
 
+## 1.6.7
+
+### Updated
+
+* Update handleLogin event, to hide user's name if both first and last names are missing
+
 ## 1.6.6
 
 ### Updated
