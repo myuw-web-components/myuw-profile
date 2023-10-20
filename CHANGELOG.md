@@ -1,5 +1,10 @@
 # myuw-profile versions
 
+## 1.6.8
+
+* Remove references to Montserrat font
+* Increase font-size to min 16px
+
 ## 1.6.7
 
 ### Updated
