@@ -1,5 +1,9 @@
 # myuw-profile versions
 
+## 1.7.0
+
+* Update font-weight on the menu
+
 ## 1.6.9
 
 * Remove references to Roboto and Arial fonts and replaced with Red Hat Display and Red Hat Text
