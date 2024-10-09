@@ -1,5 +1,7 @@
 # myuw-profile
 
+**`myuw-profile` is not currently maintained.**
+
 ## Getting Started
 
 Import and include the component as follows, but note that it will not display by default, until initialized through its event API!
